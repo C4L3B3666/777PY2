@@ -1,0 +1,1675 @@
+/* #40e164 */
+/* #151515 */
+/* #b2b3b3 */
+/* #212121; */
+/* #2E2C2C; */
+/* #4D4B4B */
+/* #13CD45 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background: #151515;
+}
+
+body.semScroll {
+    overflow: hidden;
+}
+
+.textoColorido {
+    color:#9c9696;
+}
+
+.textoColoridoVerde {
+    color: #40E194;
+}
+
+.textoBold {
+    font-weight: bold;
+}
+
+.textoGradiente {
+    color: transparent; 
+    background-clip: text;
+    background: linear-gradient(90deg, #ffffff 0%, #e0e0e0 50%, #a0a0a0 100%);
+    -webkit-background-clip: text; /* Para navegadores WebKit (Chrome, Safari) */
+}
+
+/* Esconde os elementos inicialmente */
+.slide-left, .slide-right {
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+  
+.slide-left {
+    transform: translateX(-100px);
+}
+
+.slide-left.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+  
+.slide-right {
+    transform: translateX(100px);
+}
+
+.slide-right.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#preloader {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    z-index: 9999;
+    position: fixed;
+    align-items: center;
+    padding-inline: 2rem;
+    background: #151515;
+    justify-content: center;
+    overflow: hidden !important;
+    transition: clip-path 1s ease; 
+    clip-path: circle(100% at 50% 50%); 
+  }
+
+#preloader.hide {
+    pointer-events: none; 
+    clip-path: circle(100px at 90% -25%);
+}
+  
+.preloader-container {
+    text-align: center;
+}
+  
+.preloader-gif {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    image-rendering: pixelated;
+}
+  
+.preloader-text {
+    font-family: 'Inter';
+    font-weight: bold;
+    font-size: 22pt;
+    text-align: center;
+    color: gray;
+}
+
+#cursor {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    z-index: 1001;
+    border-radius: 100%;
+    pointer-events: none;
+    background: transparent;
+    will-change: transform;
+    backdrop-filter: blur(2px);
+    border: 2px solid #40E194;
+    box-shadow: 0 0 4px #40E194;
+    transform: translate(-50%, -50%);
+    transition: all .3s cubic-bezier(.22, 1, .36, 1);
+}
+
+.btn {
+    box-shadow: 0 0 12px #00ff88;
+    padding: .5rem 1rem;
+    font-weight: bold;
+    font-family: "Inter";
+    font-size: 11pt;
+    cursor: pointer;
+    background: #40E164;
+    color: white;
+    border: none;
+    border-radius: 999px;
+
+}
+
+.dev-warning {
+    position: fixed;
+    border: 2px solid #2E2C2C;
+    background: #212121;
+    color: #40E194;
+    padding: .5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-family: "Geist";
+    z-index: 998;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-50%) scale(0.9);
+}
+
+.dev-warning.show {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to { 
+        opacity: 0.95;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+.btn0 {
+    box-shadow: none;
+    background: transparent;
+}
+
+.btn0:hover {
+    color: #40E164
+}
+
+.btnVoltarHomeTermPolitics {
+    background: #151515; 
+    padding-inline-start: 3rem;
+}
+
+.menu {
+    width: 98%;
+    height: 4rem;
+    z-index: 10;
+    margin: 1rem;
+    display: flex;
+    position: fixed;
+    padding: 2rem 3rem;
+    align-items: center;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    border: 2px solid #2E2C2C;
+    background-color: #12121260;
+    justify-content: space-between;
+}
+
+.menu .menuHamburguer {
+    display: none;
+    cursor: pointer;
+    z-index: 1000;
+    padding: .5rem;
+    flex-direction: column;
+}
+
+.menu .menuHamburguer .linha {
+    background: #40E194;
+    width: 30px;
+    position: relative;
+    margin: .2rem;
+    height: 4px;
+    transition: all 5s ease .2s;
+    border-radius: 9999px;
+}
+
+.menu.active .menuHamburguer .linha:nth-child(2) {
+    right: .7rem;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu .imgLogoMenu {
+    width: 95px;
+}
+
+sup {
+    color: #40E164;
+}
+
+.menu nav:nth-child(2) {
+    gap: .5rem;
+    display: flex;
+    align-items: center;
+}
+
+.menu .linksMenu {
+    color: white;
+    padding: .3rem;
+    font-weight: 500;
+    font-family: "Inter";
+}
+
+.menu .linksMenu:hover {
+    color: #40E164;
+    font-weight: 500;
+}
+
+.navBtns {
+    padding: .3rem;
+    width: max-content;
+    border-radius: 999px;
+    background: #212121;
+    border: 1px solid #2E2C2C;
+    box-shadow: 0 0 4px #2E2C2C;
+}
+
+.navBtnsNav2Menu {
+    display: none;
+}
+
+.secao1 {
+    height: 100vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    background: #151515;
+    padding-inline-start: 3rem;
+    justify-content: space-between;
+}
+
+.secao {
+    padding: 2rem 3rem;
+    background: #151515;
+}
+
+.secao1 nav #titleHero {
+    font-family: "Geist";
+    font-weight: bolder;
+    font-size: 30pt;
+}
+
+.textoEfeito {
+    color: transparent;
+    font-family: "Libre Franklin";
+    -webkit-text-stroke: 1px #40E194;
+}
+
+.textoSemEfeito {
+    color: white;
+    -webkit-text-stroke: 1px #fff;
+}
+
+.secao1 nav #textoHero {
+    font-family: "Inter";
+    font-weight: 200;
+    padding: .5rem 0;
+}
+
+.secao1 nav:nth-child(2) img {
+    width: 500px;
+}
+
+.secao .divTopoSecao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.secao .tituloSecao {
+    font-size: 23pt;
+    color: transparent;
+    font-family: "Libre Franklin";
+    -webkit-text-stroke: 1px #40E194;
+}
+
+.secao .textoSecao {
+    font-weight: 200;
+    color: white;
+    font-family: "Montserrat";
+}
+
+.secao .textoSecaoLado {
+    font-family: "Inter";
+    color: white;
+    font-weight: bold;
+    padding-left: 1rem;
+    font-size: 14pt;
+}
+
+
+.secao-estatisticas {
+    display: flex;
+    gap: 4rem;
+    padding: 2rem 0rem;
+    background-color: #151515;
+}
+
+.box-estatistica {
+    color: white;
+}
+
+.box-estatistica p {
+    color: #40E194;
+    font-size: 10pt;
+    font-weight: bold;
+    font-family: "Inter";
+}
+
+.box-estatistica span {
+    font-size: 14pt;
+    font-weight: bold;
+    font-family: 'Geist';
+}
+
+.secao2 {
+    background: 90% 5% / cover no-repeat url("../img/bg1.png");
+}
+
+.secao2 .conteudoSecao {
+    display: flex;
+    width: 75%;
+    height: 420px;
+    overflow: hidden;
+    margin: auto;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    align-items: center;
+    justify-content: center;
+    transition: height .4s ease .2s;
+} 
+
+.secao2 .conteudoSecao.active {
+    height: max-content;
+}
+
+.secao2 .conteudoSecao .cardFunciona {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    height: 370px;
+    margin: .8rem;
+    position: relative;
+    border-radius: 10px;
+    gap: 1rem;
+    padding: 1rem;
+    background: #212121;
+    border: 2px solid #2E2C2C;
+} 
+
+.secao2 .cardFunciona .numeroFunciona {
+    position: absolute;
+    top: -4%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 9999px;
+    font-size: 20pt;
+    font-weight: bolder;
+    right: -3%;
+    color: #40E194;
+    background: #212121;
+    border: 2px solid #2E2C2C;
+    box-shadow: 0 0 4px #151515;
+    transition: transform .4s ease;
+    font-family: "Geist";
+}
+
+.secao2 .cardFunciona:hover .numeroFunciona {
+    transform: scale(1.2);
+}
+
+.secao2 .cardFunciona .iconeFuncione {
+    color: white;
+    font-weight: bolder;
+    font-family: "Inter";
+}
+
+.secao2 .cardFunciona .titleFunciona {
+    color: #40E194;
+    font-family: "Inter";
+    font-weight: bolder;
+    transition: color .3s ease;
+}
+
+.secao2 .cardFunciona .textoFunciona {
+    color: white;
+    font-weight: 200;
+    font-family: "Montserrat"
+}
+
+.secao2 .cardFunciona .tituloFaseCardFunciona {
+    color: white;
+    font-size: 11pt;
+    font-weight: bold;
+    font-family: "Montserrat", system-ui;
+}
+
+.secao2 .cardFunciona .listaCardFunciona {
+    left: 10%;
+    color: white;
+    font-family: "Montserrat";
+    font-weight: 200;
+    position: relative;
+}
+
+.secao2 .cardFunciona .listaCardFunciona .textoBold {
+    color: gray;
+}
+
+.navVerMaisFunciona {
+    display: flex;
+    padding-top: 2rem;
+    justify-content: center;
+    animation: piscaBtn 1s infinite ease-in;
+}
+
+@keyframes piscaBtn {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.secao3 .conteudoPossoParticipar {
+    display: flex;
+    align-items: center;
+}
+
+.conteudoPossoParticipar p {
+    font-weight: bolder;
+    color: white;
+    font-size: 13pt;
+    padding-block: 1.5rem;
+    font-family: "Inter";
+}
+
+.secao3 .conteudoSecao3 { 
+    display: flex;
+    align-items: center;
+    padding-inline: 4rem;
+    justify-content: space-around;
+    
+}
+
+.secao3 .conteudoSecao3 nav:nth-child(1) {
+    width: 55%;
+}
+
+.secao3 .conteudoSecao3 nav p {
+    margin-block: 2rem;
+    color: #2E2C2C;
+    font-size: 15pt;
+    font-weight: bolder;
+    font-family: "Inter";
+    transition: color .3s ease-in;
+}
+
+.secao3 .conteudoSecao3 nav img {
+    width: 95%;
+}
+
+.secao3 .conteudoSecao3 nav p.activo {
+    color: #40E194;
+}
+
+.secao4 {
+    min-height: 100vh;
+    position: relative;
+}
+
+.conteudoSecao4 {
+    gap: 1rem;
+    display: flex; 
+    padding-block: 2rem;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.conteudoSecao4 .CardFundador {
+    top: 7rem;
+    z-index: 0;
+    width: 24%;
+    margin: 2rem;
+    padding: 1rem;
+    display: flex;
+    position: sticky;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #151515;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #2E2C2C;
+    transition: transform 0.4s ease;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.CardFundador:nth-child(1) { z-index: 1; }
+.CardFundador:nth-child(2) { z-index: 2; }
+.CardFundador:nth-child(3) { z-index: 3; }
+.CardFundador:nth-child(4) { z-index: 4; }
+.CardFundador:nth-child(5) { z-index: 5; }
+.CardFundador:nth-child(6) { z-index: 6; }
+.CardFundador:nth-child(7) { z-index: 7; }
+.CardFundador:nth-child(8) { z-index: 8; }
+
+.CardFundador .efeitoCard {
+    top: -3%;
+    left: 4%;
+    z-index: 1;
+    height: 8%;
+    width: 25%;
+    position: absolute;
+    border-radius: 999px;
+    background: #151515;
+    border: 2px solid #2E2C2C;
+}
+
+.CardFundador .efeitoCard1 {
+    top: 50%;
+    left: 88%;
+    transform: rotate(90deg)
+}
+
+.CardFundador .efeitoCard2 {
+    left: 70%;
+}
+
+.CardFundador .efeitoCard3 {
+    top: 60%;
+    left: 82%;
+}
+
+.CardFundador .efeitoCard4 {
+    top: 30%;
+    left: -12%;
+    transform: rotate(90deg)
+}
+.CardFundador .efeitoCard5 {
+    left: 50%;
+}
+.CardFundador .efeitoCard6 {
+    top: 50%;
+    left: -12%;
+}
+
+.CardFundador .efeitoCard7 {
+    left: 80%;
+    top: -1.5%;
+    transform: rotate(90deg)
+}
+
+.CardFundador .efeitoCard8 {
+    top: 65%;
+    left: -12%;
+    transform: rotate(90deg);
+}
+
+.CardFundador .efeitoCard9 {
+    left: 40%;
+}
+
+.CardFundador .efeitoCard10 {
+    top: -4%;
+    left: 10%;
+}
+
+.CardFundador .efeitoCard11 {
+    top: 97%;
+    left: 70%;
+}
+
+.CardFundador .efeitoCard12 {
+    top: 1%;
+    left: 80%;
+    transform: rotate(90deg)
+}
+
+.CardFundador .efeitoCard14 {
+    left: 80%;
+}
+
+.CardFundador .efeitoCard15 {
+    top: 60%;
+    left: 88%;
+    transform: rotate(25deg)
+}
+
+.CardFundador .imgFundador img {
+    width: 95%;
+    filter: grayscale(100%);
+    transition: filter .3s ease .2s;
+}
+
+.CardFundador.active .imgFundador img {
+    filter: grayscale(0);
+}
+
+.CardFundador .nomeFundador {
+    font-weight: bold;
+    font-size: 13pt;
+    color: #40E194;
+    font-family: "Inter";
+}
+
+.CardFundador .statusFundador {
+    color: gray;
+    font-weight: bold;
+    padding-block: .4rem;
+    font-family: "Libre Franklin";
+}
+
+.CardFundador .sobreFundador {
+    color: #fff;
+    font-weight: 200;
+    font-family: "Inter";
+}
+
+.secao5 {
+    position: relative;
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    width: 63%;
+}
+
+.conteudoPerguntas {
+    height: 330px;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-top: 2rem;
+    align-items: center;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; 
+}
+
+.conteudoPerguntas .navPergunta {
+    flex: 0 0 auto;
+    width: 20%;
+    min-width: 300px; /* ou o tamanho que preferir */
+    height: 290px;
+    padding: 1rem;
+    margin: .5rem;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    background: #212121;
+    border: 2px solid #2E2C2C;
+    scroll-snap-align: start;
+}
+
+.carousel-button {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    border: none;
+    font-size: 25pt;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #40e194;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 12px #00ff88;
+}
+
+.carousel-button.prev {
+    left: -10%;
+}
+
+.carousel-button.next {
+    right: -8%;
+}
+/* Esconder scrollbar */
+.conteudoPerguntas::-webkit-scrollbar {
+    display: none;
+}
+
+.conteudoPerguntas {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.navPergunta .pergunta {
+    font-weight: bold;
+    color: #40E194;
+    font-size: 13pt;
+    font-family: "Inter";
+}
+
+.navPergunta .resposta {
+    color: white;
+    font-weight: 200;
+    padding-top: .5rem;
+    font-family: "Montserrat";
+}
+
+.navPergunta .efeitoPergunta {
+    position: absolute;
+    box-shadow: 0 0 10px #40E194;
+    height: 10px;
+    width: 10px;
+    top: 2%;
+    background: #40E194;
+    border-radius: 999px;
+    left: 1%;
+    z-index: 1;
+    animation: piscaBtn 1s ease-in-out infinite;
+}
+
+.secao6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secao6 .textoImpactante, .secao7 .textoSecao7 {
+    width: 80%;
+    color: white;
+    font-size: 30pt;
+    text-align: center;
+    font-family: "Geist";
+}
+
+.secao7 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.secao7 .textoSecao7 {
+    width: 80%;
+    font-weight: bold;
+    font-family: "Geist";
+    font-size: 30pt;
+}
+
+.navControlesVideo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.navControlesVideo nav:nth-child(1) {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.navControlesVideo nav:nth-child(1) i {
+    font-size: 22pt;
+    padding: .5rem;
+    cursor: pointer;
+    color: #a0a0a0;
+}
+
+.navControlesVideo nav:nth-child(1) i:hover,
+.navControlesVideo {
+    color: #40E194;
+}
+
+.videoExplicativo {
+    width: 80%;
+}
+
+.secao8 {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Geist";
+    font-size: 30pt;
+}
+
+footer {
+    display: flex;
+    padding: 2rem 3rem;
+    align-items: center;
+    background: #151515;    
+    flex-direction: column;
+    background: 50% -50% / 45% no-repeat url("../img/bg_footer.gif");
+    background-color: #151515;
+} 
+
+footer nav:nth-child(1) {
+    display: flex;
+    justify-content: center;
+}
+
+footer nav:nth-child(1) img {
+    width: 130px;
+}
+
+footer .socialRodape {
+    color: gray;
+    font-size: 16pt;
+    transition: all .4s ease .1s;
+}
+footer .socialRodape:hover, 
+footer .socialRodape:active {
+    color: #40E194;
+}
+
+footer nav:nth-child(2) {
+    display: flex;
+    padding-block: 1rem;
+    gap: 3rem;
+}
+
+footer nav:nth-child(2) a {
+    color: gray;
+    font-size: 11pt;
+    text-decoration: none;
+    font-family: "Inter";
+}
+
+footer nav:nth-child(2) a:hover {
+    text-decoration: underline;
+}
+
+footer nav:nth-child(3) {
+    width: 100%;
+    color: white;
+    display: flex;
+    font-size: 10pt;
+    font-weight: 200;
+    padding-top: 1rem;
+    align-items: center;
+    font-family: "Libre Franklin";
+    justify-content: space-between;
+}
+
+footer nav:nth-child(3) div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#divEnviarPalpite {
+    padding: 2rem;
+    height: max-content;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    background: rgba(0, 0, 0, 30%);
+    backdrop-filter: blur(4px);
+    display: flex; 
+    align-items: center;
+    transition: all .3s ease;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#divEnviarPalpite.activo {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0%);
+    pointer-events: all;
+    transform: translateY(0%);
+}
+
+.primeirosInputs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#divEnviarPalpite form {
+    width: 99%;
+    display: flex;
+    align-items: top;
+    height: 100%;
+    overflow-x: hidden;
+    background: #212121;
+    border: 2px solid #2E2C2C;
+    justify-content: space-around;
+}
+
+
+#divEnviarPalpite form div.imgForm img {
+    width: 450px;
+    filter: grayscale(100%);
+    transition: all .3s ease-in-out;
+}
+
+#divEnviarPalpite form div.imgForm:hover img {
+    filter:grayscale(0%);
+}
+
+#divEnviarPalpite form div:nth-child(2) {
+    gap: 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+form div:nth-child(2) nav h3 {
+    font-size: 14pt;
+    font-family: "Geist";
+}
+
+form .contentInputForm {
+    margin-block: .5rem;
+    position: relative;
+}
+
+form .contentInputForm h4 {
+    font-family: "Geist";
+    color: #40E194;
+}
+
+form .contentInputForm h5 {
+    color: gray;
+    font-size: 7pt;
+    font-family: "Geist";
+}
+
+form .navInputFormRadio input {
+    display: none;
+}
+
+form .navInputFormRadio label {
+    background: #212121;
+    color: gray;
+    position: relative;
+    cursor: pointer;
+    font-family: "Inter";
+    font-weight: bold;
+    border: 2px solid #2E2C2C;
+    padding: .5rem;
+    border-radius: 20px;
+}
+
+.contentInputForm .navInputFormText label {
+    padding: .1rem;
+    font-size: 10pt;
+    font-weight: 700;
+    font-family: "Inter";
+    left: 1%;
+    color: white;
+    top: 14%;
+    z-index: 1;
+    border-radius: 10px;
+    position: absolute;
+    background: #212121;
+}
+
+input {
+    outline: none;
+}
+
+.contentInputForm .navInputFormText input {
+    width: 300px;
+    padding: .4rem;
+    font-weight: 700;
+    color: #fff;
+    z-index: 10;
+    font-family: "Inter";
+    border: 2px solid #2E2C2C;
+    background: transparent;
+}
+
+.contentInputForm .navInputFormText input:focus,
+.contentInputForm .navInputFormText input:hover,
+.contentInputForm .navInputFormText input:not(:placeholder-shown) {
+    border: 2px solid #40E194;
+}
+
+.contentInputForm .navInputFormText input:focus + label,
+.contentInputForm .navInputFormText input:not(:placeholder-shown) + label {
+    top: -25%;
+    color: #40E194;
+}
+
+.contentInputForm .navContentFile {
+    display: flex;
+    justify-content: center;
+}
+
+.contentInputForm .navContentFile input {
+    display: none
+}
+.contentInputForm .navContentFile label {
+    background: #40E194;
+}
+
+.contentInputForm .navContentTextArea textArea {
+    height: 140px;
+    width: 350px;
+    border-radius: 10px;
+    color: white;
+    background: transparent;
+    resize: none;
+    outline: none;
+    padding: 1rem;
+    font-family: "Inter";
+    font-weight: 700;
+    border: 2px solid #2E2C2C
+}
+
+.contentInputForm .navContentFile label nav {
+    height: 140px;
+    border: 2px solid #40E194;
+    padding: 2rem;
+    font-weight: bolder;
+    display: flex;
+    font-family: "Inter";
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+    border-radius: 10px;
+    border: 2px solid #2E2C2C;
+}
+
+.navContentCheck {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+form .navInputFormRadio input:checked + label {
+    background: #40E194;
+    color: white;
+    box-shadow: 0 0 12px #00ff88;
+    border: 2px solid #40E194;
+}
+
+.navContentCheck nav span {
+    color: white;
+    font-size: 11pt;
+    font-weight: 300;
+    font-family: "Inter";
+}
+
+.navContentCheck nav span a {
+    color: gray;
+    font-weight: 400;
+}
+
+.navBtnsForm {
+    position: absolute;
+    bottom: 6%;
+    right: 5%;
+}
+
+.navBtnsForm0 {
+    display: none;
+    pointer-events: none;
+}
+
+form .linkLogoForm img {
+    width: 50px;
+}
+
+.DivInputContePalpite {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 1rem;
+}  
+
+@media screen and (max-width: 768px)  {
+    body {
+        overflow-x: hidden;
+    }
+
+    #cursor {
+        display: none;
+    }
+
+    .btnVoltarHomeTermPolitics {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .menu {
+        margin: 0;
+        width: 100vw;
+        border: none;
+        border-radius: 0;
+    }
+
+    .menu .menuHamburguer {
+        display: flex;
+    }
+
+    .menu .navLinksMenu {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+        justify-content: space-between;
+    }
+
+    .menu .navMobilePorra {
+        display: flex;
+        height: 100vh;
+        top: 0;
+        align-items: center;
+        right: 0;
+        text-align: center;
+        width: 100vw;
+        clip-path: circle(100px at 90% -25%);
+        pointer-events: none;
+        background: black;
+        justify-content: space-around;
+        position: absolute;
+        flex-direction: column;
+        transition: all 1s ease-out .2s;
+    }
+    
+    .menu.active .navMobilePorra {
+        pointer-events: all;
+        clip-path: circle(1500px at 90% -15%);
+    } 
+
+    .menu nav:nth-child(1) {
+        z-index: 100;
+    }
+
+    .secao1 {
+        flex-direction: column;
+        padding-inline: 3.5rem;
+        padding-top: 5rem;
+        height: 100%;
+    }
+
+    .secao1 nav #titleHero {
+        font-size: 24pt;
+    }
+    
+    .secao1 nav:nth-child(2) img {
+        width: 100%;
+    }
+
+    .slide-left, .slide-right {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    } 
+
+    .secao .divTopoSecao {
+        flex-direction: column;
+        text-align: left;   
+    }
+
+    .secao .textoSecaoLado {
+        text-align: left;
+        padding-left: 0;
+        padding-top: .5rem;
+    }
+
+    .carousel-container {
+        width: 100%;
+    }
+
+    .conteudoPerguntas .navPergunta {
+        width: 100%;
+        min-width: 250px; /* ou o tamanho que preferir */
+    }
+
+    .secao2 {
+        background: 30% 100% / cover no-repeat url("../img/bg1.png");
+    }
+
+    .secao2 .conteudoSecao {
+        width: 95%;
+        height: 420px;
+    } 
+    
+    .secao2 .conteudoSecao.active {
+        height: max-content;
+    }
+    
+    .secao2 .conteudoSecao .cardFunciona {
+        width: 90%;
+        flex-shrink: 0;
+    } 
+        
+    .secao3 .conteudoSecao3 { 
+        padding-inline: 0;
+        flex-direction: column;
+        
+    }
+
+    .secao3 .conteudoSecao3 nav:nth-child(1) {
+        width: 100%;
+        padding-inline: 1rem;
+    }
+    
+    .secao3 .conteudoSecao3 nav img {
+        width: 100%;
+    }
+    
+    .secao3 .conteudoSecao3 nav p {        
+        font-size: 14pt;
+        text-align: center;
+    }
+
+    .conteudoSecao4 .CardFundador {
+        width: 85%;
+    }
+
+    .conteudoPerguntas {
+        width: max-content; 
+    }
+
+    .CardFundador .efeitoCard3, .CardFundador .efeitoCard15 {
+        top: 35%;
+    }
+
+    .secao6 .textoImpactante, .secao7 .textoSecao7, .navTextoSecao8 h4 {
+        width: 100%;
+        font-size: 20pt;
+    }
+    
+    .videoExplicativo {
+        width: 100%;
+    }
+
+    .navControlesVideo {
+        gap: 1rem;
+        flex-direction: column;
+    }
+    
+    .navControlesVideo nav:nth-child(1) i {
+        font-size: 15pt;
+    }
+    
+    #divEnviarPalpite {
+        padding: 1rem;
+        overflow-y: scroll;
+    }
+    
+    #divEnviarPalpite form {
+        height: 100vh;
+        top: 0;
+        margin-block-end: 5rem;
+        overflow-y: scroll;
+    }
+
+    #divEnviarPalpite form div.imgForm  {
+        display: none;
+    }
+
+    #divEnviarPalpite form div:nth-child(2) {
+        gap: 2rem;
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    form div:nth-child(2) nav h3 {
+        font-size: 14pt;
+        font-family: "Geist";
+    }
+    
+    form .contentInputForm {
+        margin-block: .5rem;
+        position: relative;
+    }
+    
+    form .contentInputForm h4 {
+        font-family: "Geist";
+        color: #40E194;
+    }
+    
+    form .navInputFormRadio {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        justify-content: center;
+    }
+    
+    .DivInputContePalpite {
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    .contentInputForm .navContentTextArea textArea {
+        width: 100%;
+    }
+
+    .primeirosInputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-conten: center;
+    }
+    
+    .navBtnsForm {
+        position: relative;
+        bottom: 0;
+        margin: 2rem;
+        right: 10%;
+    }
+    
+    .navBtnsForm0 {
+        display: flex;
+        pointer-events: all;
+        argin: 2rem 1rem 3rem 1rem;
+    }
+
+    .navBtnsForm1 {
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .navContentCheck nav span {
+        font-size: 10pt;
+    }
+
+    footer {
+        background: -30% 100% / 50% no-repeat url("../img/bg_footer.gif");
+        background-color: #151515;
+    } 
+
+    footer nav:nth-child(2) {
+        text-align: center;
+        flex-direction: column;
+        padding-block: .2rem;
+    }
+
+    footer nav:nth-child(3) {
+        text-align: center;
+        flex-direction: column;
+    }
+
+    footer nav:nth-child(3) div:nth-child(2) {
+        padding-block: 1rem;
+    }
+    footer nav:nth-child(2) a:active  {
+        color: #40E194;
+        text-decoration: underline;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) { 
+    body {
+        overflow-x: hidden;
+    }
+
+    #cursor {
+        display: none;
+    }
+
+    .menu {
+        margin: 0;
+        width: 100vw;
+        border: none;
+        border-radius: 0;
+    }
+
+    .menu .menuHamburguer {
+        display: flex;
+    }
+
+    .menu .navLinksMenu {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+        justify-content: space-between;
+    }
+
+    .menu .navMobilePorra {
+        display: flex;
+        height: 100vh;
+        top: 0;
+        align-items: center;
+        right: 0;
+        text-align: center;
+        width: 100vw;
+        clip-path: circle(100px at 90% -35%);
+        pointer-events: none;
+        background: black;
+        justify-content: space-around;
+        position: absolute;
+        flex-direction: column;
+        transition: all 1s ease-out .2s;
+    }
+    
+    .menu.active .navMobilePorra {
+        pointer-events: all;
+        clip-path: circle(2500px at 90% -15%);
+    } 
+
+    .menu nav:nth-child(1) {
+        z-index: 100;
+    }
+
+    .secao .divTopoSecao {
+        flex-direction: column;
+        text-align: left;   
+    }
+
+    .secao .textoSecaoLado {
+        text-align: left;
+        padding-left: 0;
+        padding-top: .5rem;
+    }
+
+    .secao .textoSecaoLado {
+        text-align: left;
+        padding-left: 0;
+        padding-top: .5rem;
+    }
+
+    .slide-left, .slide-right {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+    }   /* TALVEZ ISSO DÊ PROBLEMAS MAIS TARDE  */
+
+    .secao1 {
+        flex-direction: column;
+        padding-inline: 3rem;
+        padding-top: 5rem;
+        height: 100%;
+    }
+
+    .secao2 .conteudoSecao {
+        width: 95%;
+        height: 400px;
+    }
+
+    .carousel-container {
+        width: 90%;
+    }
+
+    .secao2 {
+        background: 30% 100% / cover no-repeat url("../img/bg1.png");
+    }
+    
+    .secao2 .conteudoSecao .cardFunciona {
+        width: 45%;
+        height: 340px;
+    } 
+
+    .secao3 .conteudoSecao3 { 
+        padding-inline: 0;
+        justify-content: center;
+        flex-direction: column;
+        
+    }
+
+    .secao3 .conteudoSecao3 nav:nth-child(1) {
+        width: 65%;
+        padding-inline: 1rem;
+    }
+    
+    .secao3 .conteudoSecao3 nav img {
+        width: 99%;
+    }
+    
+    .secao3 .conteudoSecao3 nav p {        
+        font-size: 14pt;
+        text-align: center;
+    }
+    
+    .conteudoSecao4 .CardFundador {
+        width: 35%;
+        top: 2rem;
+    }
+     
+    .CardFundador .efeitoCard3, .efeitoCard15 {
+        top: 25%;
+    }
+
+    .videoExplicativo {
+        width: 99%;
+    }
+
+    #divEnviarPalpite {
+        padding: 1rem;
+        overflow-y: scroll;
+    }
+    
+    #divEnviarPalpite form {
+        top: 0;
+        width: 95%;
+        height: 100vh;
+        overflow-y: scroll;
+        margin-block-end: 5rem;
+    }
+
+    #divEnviarPalpite form div.imgForm  {
+        display: none;
+    }
+
+    #divEnviarPalpite form div:nth-child(2) {
+        gap: 2rem;
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    
+    form .contentInputForm {
+        margin-block: .5rem;
+        position: relative;
+    }
+    
+    form .navInputFormRadio {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        justify-content: center;
+    }
+    
+    .DivInputContePalpite {
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .contentInputForm .navContentTextArea textArea {
+        width: 100%;
+    }
+
+    .primeirosInputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-conten: center;
+    }
+    
+    .navBtnsForm {
+        top: 2rem;
+        margin: auto;
+        position: relative;
+    }
+
+    .navContentCheck nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navContentCheck nav span {
+        font-size: 10pt;
+    }
+
+    footer {
+        background: -30% 100% / 45% no-repeat url("../img/bg_footer.gif") #151515;
+    } 
+
+    footer nav:nth-child(2) {
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    footer nav:nth-child(3) div:nth-child(2) {
+        padding-block: 1rem;
+    }
+    footer nav:nth-child(2) a:active  {
+        color: #40E194;
+        text-decoration: underline;
+    }
+}
+
+
+@media screen and (min-width: 1025px) and (max-width: 1366px) {
+    
+    body {
+        overflow-x: hidden;
+    }
+
+    .menu .navLinksMenu {
+        display: flex;;
+    }
+    .btn, .menu .navLinksMenu {
+        width: max-content;
+    }
+    .secao2 .conteudoSecao .cardFunciona {
+        width: 40%;
+    } 
+    
+    .btnVoltarHomeTermPolitics {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }   
+    
+    .secao3 .conteudoSecao3 nav {
+        width: 60%;
+    }
+    .conteudoSecao4 .CardFundador {
+        width: 25%;
+        top: 6rem;
+    }
+ 
+    .conteudoPerguntas .navPergunta {
+        width: 45%;
+        min-width: 280px; /* ou o tamanho que preferir */
+        height: 100%;
+    }
+
+    .videoExplicativo {
+        width: 95%;
+    }
+    #divEnviarPalpite form {
+        width: 100%;
+        overflow-x: scroll;
+    }
+}
