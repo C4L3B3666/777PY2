@@ -1,12 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/script.js" defer></script>
+
 <body>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus ab tempora quidem iusto modi, velit rem earum, cupiditate facere nostrum nisi. Perferendis fuga qui delectus facere. Quas possimus iusto saepe.</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate commodi maiores repellat voluptas repellendus quibusdam et doloribus error perferendis corrupti quaerat sequi quam tenetur quisquam tempora, earum perspiciatis blanditiis ut.</p>
+
+    <nav class="ranking">
+
+        <div>
+            <p>Posição: #1</p>
+            <p>Alcunha: xxx</p>
+            <p>Erros: </p>
+            <p>Dia do Desafio: </p>
+        </div>
+
+        <div>
+            <p>Posição: #2</p>
+            <p>Alcunha: xxx</p>
+            <p>Erros: </p>
+            <p>Dia do Desafio: </p>
+        </div>
+
+        <!-- Top 10 -->
+    </nav>
+
+    <section class="formularios">
+
+        
+        <form action="#" id="formRegistro">
+            <h4>Envie o seu PALPITE AQUI E GUARDE O SEU ID SERÁ usado para enviar parlpites apartir do segundo dia</h4>
+            
+            <input type="text" placeholder="Apelido" id="apelido" required>
+            <input type="text" placeholder="Nome" id="nomeCompleto" required>
+            <input type="text" placeholder="Telefone" id="telefone" required>
+            <input type="text" placeholder="E-mail" id="email">
+            
+            <label for="boxe">Boxe</label>
+            <input type="radio" name="modalidade" id="futebol">
+            
+            <label for="futebol">Futebol</label>
+            <input type="radio" name="modalidade" id="basquetebol">
+            
+            <label for="basquetebol">Basquetebol</label>
+            <input type="radio" name="modalidade" id="mistura">
+            
+            <label for="mistura">Combinei várias modalidades</label>
+            <input type="file" id="ficheiro" name="ficheiro" accept="image/*,application/pdf" required> <!-- FOTO OU VÍDEO DO PALPITE -->
+            
+            <textarea name="" id="justificativa" placeholder="Porque você acredita neste palpite?" required></textarea> <!-- AQUI SERÁ JUSTIFICADO O SEU PALPITE  -->
+            
+            
+            <button type="submit">Palpitar Agora</button>
+
+            
+        </form>
+        <p>É a segunda ver a enviar <button class="showFormPalpiteDiario">Clica aqui</button></p>
+        
+        <form action="#" id="formPalpiteDiario" class="hidden">
+            <h4>Bem-vindo de volta!</h4>
+            <p>Se você já participou no desafio envie o seu palpite inserindo o ID</p>
+            
+            <input type="text" placeholder="Insira o seu ID" id="idParticipante" name="idParticipante" required> <!-- Onde será inserido o ID -->
+            
+            <div>
+                <p>Alcunha:</p>
+                <p>Fase Atual: (Lungoki, Longi ou Nzambi)</p>
+                <p>Dia do Desafio:</p>
+                <p>Elegível a bónus: SIM</p>
+                <p>Posição no Ranking: #1</p>
+                <p>Erros:</p>
+                <p>[Barra de Progresso]</p>
+            </div>
+            
+            <input type="file" id="ficheiro" name="ficheiro" accept="image/*,application/pdf" required> <!-- FOTO OU VÍDEO DO PALPITE -->
+            
+            <textarea name="" id="justificativa" placeholder="Porque você acredita neste palpite?" required></textarea> <!-- AQUI SERÁ JUSTIFICADO O SEU PALPITE  -->
+            
+            <button type="submit">Palpitar Agora</button>
+            
+    </section>
+
+    </form>
 </body>
-</html>
