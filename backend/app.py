@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-mongo_uri = "mongodb://localhost:27017/desafio"
+mongo_uri = os.getenv('MONGO_URI')
 client = MongoClient(mongo_uri)
-db = client["desafio"]
+db = client.get_database()
 
 @app.route('/')
 def index():
